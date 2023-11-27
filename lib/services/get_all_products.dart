@@ -8,13 +8,18 @@ class AllProductService {
     http.Response response =
         await http.get(Uri.parse("https://fakestoreapi.com/products"));
 
-    List<dynamic> data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      List<dynamic> data = jsonDecode(response.body);
 
-    List<ProductModel> productslist = [];
-    for (int i = 0; i < data.length; i++) {
-      productslist.add(ProductModel.fromJson(data[i]));
+      List<ProductModel> productslist = [];
+      for (int i = 0; i < data.length; i++) {
+        productslist.add(ProductModel.fromJson(data[i]));
+      }
+
+      return productslist;
+    } else {
+      throw Exception(
+          "There is a problem with status code${response.statusCode}");
     }
-
-    return productslist;
   }
 }
