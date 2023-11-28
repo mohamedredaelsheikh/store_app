@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
-  Future<List<dynamic>> get({required String url}) async {
-    http.Response response = await http.get(Uri.parse(url));
+  Future<List<dynamic>> get(
+      {required String url, @required String? token}) async {
+    Map<String, String> headers = {};
+    if (token != null) {
+      headers.addAll({'Authorization': 'Bearer $token'});
+    }
+    http.Response response = await http.get(Uri.parse(url), headers: headers);
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -41,6 +46,7 @@ class Api {
     }
   }
 
+// Why he use post with put mothed not use put
   Future<dynamic> put({
     required String url,
     @required dynamic body,
@@ -57,7 +63,7 @@ class Api {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
 
-    http.Response response = await http.put(
+    http.Response response = await http.post(
       Uri.parse(url),
       body: body,
       headers: headers,
