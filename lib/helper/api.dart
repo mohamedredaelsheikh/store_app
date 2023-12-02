@@ -46,7 +46,6 @@ class Api {
     }
   }
 
-// Why he use post with put mothed not use put???????????????????????
   Future<dynamic> put({
     required String url,
     @required dynamic body,
@@ -63,7 +62,7 @@ class Api {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
 
-    http.Response response = await http.post(
+    http.Response response = await http.put(
       Uri.parse(url),
       body: body,
       headers: headers,

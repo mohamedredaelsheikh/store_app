@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:store_app/models/product_model.dart';
+import 'package:store_app/services/get_all_products.dart';
+import 'package:store_app/widgets/custom_card.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -26,53 +29,34 @@ class HomeView extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        height: 150,
-        width: 250,
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              blurRadius: 40,
-              spreadRadius: 0,
-              offset: const Offset(10, 10))
-        ]),
-        child: const Card(
-          elevation: 10,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "HandBag Lv",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ),
+      body: Padding(
+        padding: const EdgeInsets.only(right: 16, left: 16, top: 65),
+        child: FutureBuilder<List<ProductModel>>(
+          future: AllProductService().getAllProduct(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<ProductModel> products = snapshot.data!;
+              return GridView.builder(
+                itemCount: products.length,
+                clipBehavior: Clip.none,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.4,
+                  crossAxisSpacing: 15,
+                  mainAxisExtent: 100,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      r"$225",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
+                itemBuilder: (context, index) {
+                  return ShoppingCard(
+                    product: products[index],
+                  );
+                },
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
         ),
       ),
     );
