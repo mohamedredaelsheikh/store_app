@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/models/product_model.dart';
+import 'package:store_app/views/update_view.dart';
 
 class ShoppingCard extends StatefulWidget {
   ShoppingCard({super.key, required this.product});
@@ -14,7 +15,9 @@ class _ShoppingCardState extends State<ShoppingCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, UpdateProductView.id);
+      },
       child: Stack(
         clipBehavior: Clip.none,
         children: [

@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 
-class UpdateView extends StatelessWidget {
-  const UpdateView({super.key});
-
+class UpdateProductView extends StatelessWidget {
+  const UpdateProductView({super.key});
+  static String id = 'Update Product View';
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: const Text(
+          'Update Product',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
+    );
   }
 }
