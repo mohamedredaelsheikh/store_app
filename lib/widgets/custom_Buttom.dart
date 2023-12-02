@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomButtom extends StatelessWidget {
   const CustomButtom(
       {super.key,
@@ -18,7 +17,7 @@ class CustomButtom extends StatelessWidget {
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            color: kprimaryColor,
+            color: Colors.blue,
             borderRadius: BorderRadius.circular(8),
           ),
           width: MediaQuery.of(context).size.width,
@@ -35,7 +34,7 @@ class CustomButtom extends StatelessWidget {
                 : Text(
                     buttomname,
                     style: const TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
