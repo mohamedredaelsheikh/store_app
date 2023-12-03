@@ -2,21 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/views/update_view.dart';
 
-class ShoppingCard extends StatefulWidget {
+class ShoppingCard extends StatelessWidget {
   ShoppingCard({super.key, required this.product});
-
   ProductModel product;
-
-  @override
-  State<ShoppingCard> createState() => _ShoppingCardState();
-}
-
-class _ShoppingCardState extends State<ShoppingCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, UpdateProductView.id);
+        Navigator.pushNamed(context, UpdateProductView.id, arguments: product);
       },
       child: Stack(
         clipBehavior: Clip.none,
@@ -39,7 +32,7 @@ class _ShoppingCardState extends State<ShoppingCard> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      widget.product.title.substring(0, 6),
+                      product.title.substring(0, 6),
                       style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
@@ -52,7 +45,7 @@ class _ShoppingCardState extends State<ShoppingCard> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          r"$" "${widget.product.price.toString()}",
+                          r"$" "${product.price.toString()}",
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -73,7 +66,7 @@ class _ShoppingCardState extends State<ShoppingCard> {
             right: 32,
             bottom: -60,
             child: Image.network(
-              widget.product.image,
+              product.image,
               height: 100,
               width: 100,
             ),

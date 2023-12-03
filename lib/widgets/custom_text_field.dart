@@ -7,40 +7,36 @@ class CustomTextField extends StatelessWidget {
     this.maxlines = 1,
     this.onSaved,
     this.onChanged,
+    this.input,
   });
   final String hinttext;
   final int maxlines;
   final void Function(String)? onChanged;
   final void Function(String?)? onSaved;
+  final TextInputType? input;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: onChanged,
       onSaved: onSaved,
-      validator: (value) {
-        if (value?.isEmpty ?? true) {
-          return " Field is required ";
-        } else {
-          return null;
-        }
-      },
       maxLines: maxlines,
+      keyboardType: input,
       cursorColor: Colors.black,
       decoration: InputDecoration(
           hintText: hinttext,
           hintStyle: const TextStyle(color: Colors.black),
           border: buildBorder(),
           enabledBorder: buildBorder(),
-          focusedBorder: buildBorder(Colors.black)),
+          focusedBorder: buildBorder()),
     );
   }
 
-  OutlineInputBorder buildBorder([color]) {
+  OutlineInputBorder buildBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(
-        color: color ?? Colors.white,
+      borderSide: const BorderSide(
+        color: Colors.black,
       ),
     );
   }
