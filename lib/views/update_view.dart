@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/models/product_model.dart';
 import 'package:store_app/services/update_product.dart';
-import 'package:store_app/widgets/custom_Buttom.dart';
+import 'package:store_app/widgets/custom_Button.dart';
 import 'package:store_app/widgets/custom_text_field.dart';
 
 class UpdateProductView extends StatefulWidget {
@@ -77,7 +77,7 @@ class _UpdateProductViewState extends State<UpdateProductView> {
               const SizedBox(
                 height: 50,
               ),
-              CustomButtom(
+              CustomButton(
                 buttomname: "Update",
                 onTap: () async {
                   isloading = true;
@@ -100,7 +100,7 @@ class _UpdateProductViewState extends State<UpdateProductView> {
   }
 
   Future<void> updateProduct(ProductModel product) async {
-    await UpdateProductService().addProduct(
+    await UpdateProductService().updateProduct(
         title: productname == null ? product.title : productname!,
         price: price == null ? product.price.toString() : price!,
         description: description == null ? product.description : description!,

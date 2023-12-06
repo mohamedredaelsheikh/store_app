@@ -67,6 +67,7 @@ class Api {
       body: body,
       headers: headers,
     );
+    print(response.body);
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
       return data;

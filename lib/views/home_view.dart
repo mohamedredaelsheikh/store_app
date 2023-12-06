@@ -41,9 +41,9 @@ class HomeView extends StatelessWidget {
                 clipBehavior: Clip.none,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 1.4,
                   crossAxisSpacing: 15,
-                  mainAxisExtent: 100,
+                  mainAxisSpacing: 40,
+                  mainAxisExtent: 120,
                 ),
                 itemBuilder: (context, index) {
                   return ShoppingCard(
@@ -52,6 +52,7 @@ class HomeView extends StatelessWidget {
                 },
               );
             } else {
+              print(snapshot.error);
               return const Center(
                 child: CircularProgressIndicator(),
               );

@@ -12,6 +12,7 @@ class ShoppingCard extends StatelessWidget {
         Navigator.pushNamed(context, UpdateProductView.id, arguments: product);
       },
       child: Stack(
+        alignment: Alignment.centerRight,
         clipBehavior: Clip.none,
         children: [
           Container(
@@ -63,12 +64,12 @@ class ShoppingCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 32,
-            bottom: -60,
+            //right: 20,
+            bottom: 60,
             child: Image.network(
               product.image,
-              height: 100,
-              width: 100,
+              height: MediaQuery.of(context).size.height * .12,
+              width: MediaQuery.of(context).size.height * .12,
             ),
           )
         ],
